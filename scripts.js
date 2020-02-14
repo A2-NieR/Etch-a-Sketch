@@ -5,6 +5,7 @@ container.style.display = 'grid';
 container.style.margin = 'auto';
 container.style.height = '920px';
 container.style.width = '920px';
+container.style.backgroundColor = 'black';
 document.body.appendChild(container);
 
 // Button setup & functionality
@@ -29,7 +30,19 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// The main function incl. color changer
+//Color changer
+container.addEventListener('mouseover', (e) => {
+  currentColor = e.target.style.backgroundColor;
+  currentOpacity = e.target.style.opacity;
+  if (currentColor == 'white') {
+    e.target.style.backgroundColor = `hsl(${getRandomIntInclusive(0, 360)}, 100%, 50%)`;
+  } else if (currentOpacity > 0) {
+    e.target.style.opacity = currentOpacity - 0.1;
+    console.log('brightness');
+  }
+});
+
+// The main function
 function createGrid(cols, rows) {
   const dim = (cols * rows);
   container.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
@@ -43,12 +56,9 @@ function createGrid(cols, rows) {
     cell.style.width = '100%';
     cell.style.padding = 'auto';
     cell.style.border = '0.5px solid black';
+    cell.style.backgroundColor = 'white';
+    cell.style.opacity = '1';
     container.appendChild(cell);
-
-    cell.addEventListener('mouseover', function (e) {
-      let hue = getRandomIntInclusive(0, 360);
-      e.target.style.background = `hsl(${hue}, 100%, 50%)`;
-    });
   }
 }
 
