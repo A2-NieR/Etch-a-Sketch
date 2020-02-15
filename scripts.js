@@ -38,7 +38,6 @@ container.addEventListener('mouseover', (e) => {
     e.target.style.backgroundColor = `hsl(${getRandomIntInclusive(0, 360)}, 100%, 50%)`;
   } else if (currentOpacity > 0) {
     e.target.style.opacity = currentOpacity - 0.1;
-    console.log('brightness');
   }
 });
 
